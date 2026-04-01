@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Hopper · Commercial Operations & Transformation</title>
+  <meta name="description" content="David Hopper builds the commercial infrastructure that makes revenue predictable. Director-level operator with experience across PE-backed manufacturing, global nonprofit, and regulated services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a08;
+      --off-white: #f5f2ed;
+      --warm-white: #faf8f4;
+      --accent: #1a6b3c;
+      --accent-muted: #1a6b3c22;
+      --mid: #6b6560;
+      --border: #e0dbd4;
+      --mono: 'DM Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+      --body: 'Crimson Pro', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--black);
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 0;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-name span { color: var(--accent); }
+
+    .hero-position {
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--mid);
+      max-width: 540px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .hero-position strong { color: var(--black); font-weight: 600; }
+
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--off-white);
+      padding: 14px 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      padding: 14px 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--black); }
+
+    .hero-right {
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.5s both;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0.85;
+      mix-blend-mode: luminosity;
+    }
+
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #1a1a16 0%, #2a2520 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-photo-placeholder span {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #3a3530;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(0deg, rgba(10,10,8,0.9) 0%, transparent 100%);
+    }
+
+    .hero-caption-text {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b6560;
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--black);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3a3530;
+      padding: 0 40px;
+    }
+
+    .ticker-item span { color: var(--accent); margin-right: 40px; }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-hed {
+      font-family: var(--display);
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 48px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-body p {
+      font-size: 19px;
+      line-height: 1.75;
+      color: #3a3530;
+      margin-bottom: 20px;
+    }
+
+    .about-body p strong { color: var(--black); font-weight: 600; }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .stat-number {
+      font-family: var(--display);
+      font-size: 48px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    /* WORK */
+    #work {
+      background: var(--black);
+      max-width: 100%;
+      padding: 100px 48px;
+    }
+
+    #work .section-label { color: #2ec27e; }
+
+    #work .section-hed { color: var(--off-white); }
+
+    .work-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #1a1a16;
+      border: 1px solid #1a1a16;
+    }
+
+    .work-card {
+      background: #0a0a08;
+      padding: 36px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-card:hover { background: #111108; }
+
+    .work-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .work-card:hover::before { transform: scaleX(1); }
+
+    .work-card-type {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2ec27e;
+    }
+
+    .work-card-title {
+      font-family: var(--display);
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: var(--off-white);
+    }
+
+    .work-card-desc {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #6b6560;
+      flex: 1;
+    }
+
+    .work-card-arrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #3a3530;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .work-card:hover .work-card-arrow { color: #2ec27e; }
+
+    /* THINKING */
+    .thinking-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .thinking-featured {
+      border-top: 3px solid var(--accent);
+      padding-top: 32px;
+    }
+
+    .thinking-featured-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .thinking-featured-title {
+      font-family: var(--display);
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 16px;
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .thinking-featured-title:hover { color: var(--accent); }
+
+    .thinking-featured-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+
+    .thinking-featured-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #9a9690;
+      letter-spacing: 0.08em;
+    }
+
+    .thinking-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .thinking-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+    }
+
+    .thinking-item-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .thinking-item-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+
+    .thinking-item:hover .thinking-item-title { color: var(--accent); }
+
+    /* CONTACT */
+    #contact {
+      background: var(--black);
+      max-width: 100%;
+      padding: 100px 48px;
+      text-align: center;
+    }
+
+    #contact .section-label { color: #2ec27e; }
+
+    .contact-hed {
+      font-family: var(--display);
+      font-size: clamp(60px, 8vw, 110px);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--off-white);
+      margin-bottom: 24px;
+    }
+
+    .contact-hed span { color: var(--accent); }
+
+    .contact-sub {
+      font-size: 19px;
+      color: #6b6560;
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.65;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border: 1px solid #2a2a26;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    .contact-link.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .contact-link.primary:hover { background: #157a32; border-color: #157a32; color: white; }
+
+    /* FOOTER */
+    footer {
+      background: #050504;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a1a16;
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2a2a26;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SCROLL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 400px; }
+      .hero-left { padding: 48px 24px; }
+      section { padding: 60px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .thinking-grid { grid-template-columns: 1fr; }
+      #work { padding: 60px 24px; }
+      #contact { padding: 60px 24px; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-name">David Hopper</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#thinking">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Commercial Operations · GTM Strategy · AI</div>
+      <h1 class="hero-name">DAVID<br><span>HOPPER</span></h1>
+      <p class="hero-position">
+        I work on <strong>commercial operations</strong> — the unglamorous infrastructure stuff
+        that determines whether a business grows on purpose or just gets lucky.
+        This site is where I share tools and ideas I'm working on.
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">Things I've built</a>
+        <a href="#thinking" class="btn-secondary">How I think</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Replace the div below with: <img src="your-photo.jpg" alt="David Hopper" class="hero-photo"> -->
+      <div class="hero-photo-placeholder">
+        <span>Photo</span>
+        <span>Replace with headshot</span>
+      </div>
+      <div class="hero-caption">
+        <div class="hero-caption-text">Chattanooga, TN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span>◆</span> PE-Backed Manufacturing</span>
+      <span class="ticker-item"><span>◆</span> Commercial Excellence</span>
+      <span class="ticker-item"><span>◆</span> Revenue Operations</span>
+      <span class="ticker-item"><span>◆</span> AI Adoption & Transformation</span>
+      <span class="ticker-item"><span>◆</span> GTM Infrastructure</span>
+      <span class="ticker-item"><span>◆</span> CS Operations</span>
+      <span class="ticker-item"><span>◆</span> Marketing Ops</span>
+      <span class="ticker-item"><span>◆</span> CRM Architecture</span>
+      <span class="ticker-item"><span>◆</span> PE-Backed Manufacturing</span>
+      <span class="ticker-item"><span>◆</span> Commercial Excellence</span>
+      <span class="ticker-item"><span>◆</span> Revenue Operations</span>
+      <span class="ticker-item"><span>◆</span> AI Adoption & Transformation</span>
+      <span class="ticker-item"><span>◆</span> GTM Infrastructure</span>
+      <span class="ticker-item"><span>◆</span> CS Operations</span>
+      <span class="ticker-item"><span>◆</span> Marketing Ops</span>
+      <span class="ticker-item"><span>◆</span> CRM Architecture</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-hed reveal">A bit about me</h2>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>
+          I've spent most of my career trying to figure out why smart companies with good products still struggle to grow predictably. Usually it's not the strategy — it's the plumbing. Broken pipelines, informal pricing, marketing and sales rowing in different directions.
+        </p>
+        <p>
+          I've worked on this across a pretty wide range of contexts — <strong>PE-backed manufacturing</strong> at PlayCore, <strong>global nonprofit</strong> at Compassion International, <strong>regulated services</strong> at Stericycle, <strong>CPG</strong> at Kraft Heinz, and earlier stints at Deloitte, Golin, and ProAssurance.
+        </p>
+        <p>
+          The stuff on this site is me thinking out loud — tools I've built to test ideas, frameworks I've found useful, writing about things I keep running into at work.
+        </p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Years building commercial infrastructure across five industries</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">$1B+</div>
+          <div class="stat-label">Revenue environments managed across portfolio companies</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Countries of operational scope at Compassion International</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">$28M</div>
+          <div class="stat-label">Qualified pipeline generated via signal-based prospecting systems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <div id="work">
+    <div style="max-width:1200px; margin: 0 auto 48px;">
+      <div class="section-label">Projects</div>
+      <h2 class="section-hed">Things I'm<br>working on</h2>
+      <p style="font-family: 'Crimson Pro', Georgia, serif; font-size: 17px; color: #6b6560; max-width: 580px; line-height: 1.7; margin-top: -24px;">Simplified, standalone versions of tools and systems built in real contexts — integration dependencies removed, proprietary data scrubbed, logic anonymized.</p>
+    </div>
+    <div class="work-grid">
+
+      <a href="https://account-signal-tool.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Live AI Tool</div>
+        <div class="work-card-title">Account Priming Signal Engine</div>
+        <div class="work-card-desc">Type in a company name and it surfaces buying signals, scores the timing window, and suggests an opening move. Built around the idea that the best time to reach a buyer is before they know they're buying.</div>
+        <div class="work-card-arrow">Try it →</div>
+      </a>
+
+      <a href="https://churn-upsell-tool.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Live AI Tool</div>
+        <div class="work-card-title">Churn Risk & Expansion Readiness</div>
+        <div class="work-card-desc">Paste in what you know about a CS account — usage trends, NPS, champion status — and get a plain-English read on churn risk and expansion readiness, plus a suggested next move.</div>
+        <div class="work-card-arrow">Try it →</div>
+      </a>
+
+      <a href="https://commercial-scorecard.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Interactive Assessment</div>
+        <div class="work-card-title">Commercial Maturity Scorecard</div>
+        <div class="work-card-desc">20 questions across the five things that tend to break first in a commercial org. Takes about 8 minutes. Shows you where you're leaking value.</div>
+        <div class="work-card-arrow">Try it →</div>
+      </a>
+
+      <a href="https://gtm-teardown.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Case Analysis</div>
+        <div class="work-card-title">GTM Operating Model Teardown</div>
+        <div class="work-card-desc">Two fictional-but-realistic company teardowns — a PE-backed manufacturer and a scaling SaaS CS org. What's broken, why, and what I'd fix first.</div>
+        <div class="work-card-arrow">Read it →</div>
+      </a>
+
+      <a href="https://deal-memo-case-study.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Field Case Study</div>
+        <div class="work-card-title">Deal Memo: Commercial Transformation</div>
+        <div class="work-card-desc">A writeup of a commercial transformation I led, structured the way a PE firm would want to read it. Including what didn't work.</div>
+        <div class="work-card-arrow">Read it →</div>
+      </a>
+
+      <a href="https://priming-window-thesis.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Original Thesis</div>
+        <div class="work-card-title">The Priming Window</div>
+        <div class="work-card-desc">The observation that got me thinking: the best reps I've worked with were doing something the others weren't. They were selling to buyers who didn't know they were buying yet.</div>
+        <div class="work-card-arrow">Read it →</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- THINKING -->
+  <section id="thinking">
+    <div class="section-label reveal">Writing</div>
+    <h2 class="section-hed reveal">How I think</h2>
+    <div class="thinking-grid">
+      <div class="thinking-featured reveal">
+        <div class="thinking-featured-label">Essay · Commercial Strategy</div>
+        <a href="https://priming-window-thesis.vercel.app" target="_blank" class="thinking-featured-title">
+          The Priming Window: Getting to Buyers Before They're Buying
+        </a>
+        <p class="thinking-featured-desc">
+          An observation I kept coming back to: the top-performing reps at every company I've worked at were quietly running a different motion than everyone else. They were reaching buyers 12-18 months before any formal process started. This is my attempt to explain why that works and how to build it into a system.
+        </p>
+        <div class="thinking-featured-meta">8 min read · Commercial Strategy · Signal-Based Prospecting</div>
+      </div>
+      <div class="thinking-sidebar reveal">
+        <a href="https://gtm-teardown.vercel.app" target="_blank" class="thinking-item">
+          <div class="thinking-item-label">Field Notes · PE Manufacturing</div>
+          <div class="thinking-item-title">What's Actually Broken in a PE-Backed Commercial Org</div>
+        </a>
+        <a href="https://gtm-teardown.vercel.app" target="_blank" class="thinking-item">
+          <div class="thinking-item-label">Field Notes · B2B SaaS</div>
+          <div class="thinking-item-title">CS Operations at Scale: The Four Things That Break First</div>
+        </a>
+        <a href="https://deal-memo-case-study.vercel.app" target="_blank" class="thinking-item">
+          <div class="thinking-item-label">Case Study · Commercial Transformation</div>
+          <div class="thinking-item-title">From Activity-Driven to Outcome-Driven: A 18-Month Transformation</div>
+        </a>
+        <a href="https://commercial-scorecard.vercel.app" target="_blank" class="thinking-item">
+          <div class="thinking-item-label">Framework · Self-Assessment</div>
+          <div class="thinking-item-title">The Commercial Maturity Model: Where Most Orgs Break Down</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div id="contact">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-hed">Say<br><span>hello.</span></h2>
+    <p class="contact-sub">
+      If something here resonated or you want to compare notes on commercial ops, I'm easy to reach.
+    </p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#cda9aca5a2bdbda8bf8daaa0aca4a1e3aea2a0" class="contact-link primary"><span class="__cf_email__" data-cfemail="badedbd2d5cacadfc8faddd7dbd3d694d9d5d7">[email&#160;protected]</span></a>
+      <a href="https://linkedin.com/in/dahopper" target="_blank" class="contact-link">LinkedIn</a>
+      <a href="tel:7349683262" class="contact-link">734-968-3262</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 David Hopper</span>
+    <span>Chattanooga, TN</span>
+    <span>Built with Claude</span>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) =
