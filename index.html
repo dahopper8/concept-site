@@ -280,19 +280,17 @@
     .about-body p strong { color: var(--black); font-weight: 600; }
 
     .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
     .stat {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 20px;
-      align-items: baseline;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      padding: 20px;
+      border-radius: 2px;
     }
 
     .stat-number {
@@ -663,7 +661,7 @@
     <div class="about-grid">
       <div class="about-body reveal">
         <p>
-          I've spent most of my career trying to figure out why smart companies with good products still struggle to grow predictably. Usually it's not the strategy — it's the plumbing. Broken pipelines, informal pricing, marketing and sales rowing in different directions.
+          I've spent most of my career on a fairly specific problem: why do smart companies with good products still struggle to grow predictably. The answer is usually somewhere in the plumbing. Broken pipelines, informal pricing, marketing and sales rowing in different directions.
         </p>
         <p>
           I've worked on this across a pretty wide range of contexts — <strong>PE-backed manufacturing</strong> at PlayCore, <strong>global nonprofit</strong> at Compassion International, <strong>regulated services</strong> at Stericycle, <strong>CPG</strong> at Kraft Heinz, and earlier stints at Deloitte, Golin, and ProAssurance.
@@ -674,20 +672,21 @@
       </div>
       <div class="about-stats reveal">
         <div class="stat">
-          <div class="stat-number">12+</div>
-          <div class="stat-label">Years building commercial infrastructure across five industries</div>
+          <div class="stat-label" style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:var(--mono);">Industries</div>
+          <div style="font-family:var(--body);font-size:15px;color:#3a3530;line-height:1.8;">Manufacturing &amp; Industrials<br>Global Nonprofit<br>Regulated Waste &amp; Compliance<br>CPG / FMCG<br>Professional Services<br>Specialty Insurance</div>
         </div>
         <div class="stat">
-          <div class="stat-number">$1B+</div>
-          <div class="stat-label">Revenue environments managed across portfolio companies</div>
+          <div class="stat-label" style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:var(--mono);">Environments</div>
+          <div style="font-family:var(--body);font-size:15px;color:#3a3530;line-height:1.8;">PE-backed portfolio companies<br>Publicly traded corporations<br>Global nonprofit at scale<br>Big Four consulting<br>Integrated agency<br>Early-stage ventures</div>
         </div>
         <div class="stat">
-          <div class="stat-number">25+</div>
-          <div class="stat-label">Countries of operational scope at Compassion International</div>
+          <div class="stat-label" style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:var(--mono);">$1B+ Revenue Environments</div>
+          <div style="font-family:var(--display);font-size:64px;line-height:1;color:var(--accent);">4</div>
         </div>
         <div class="stat">
-          <div class="stat-number">$28M</div>
-          <div class="stat-label">Qualified pipeline generated via signal-based prospecting systems</div>
+          <div class="stat-label" style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:var(--mono);">Global Reach</div>
+          <div style="font-family:var(--display);font-size:64px;line-height:1;color:var(--accent);">25+</div>
+          <div style="font-family:var(--body);font-size:14px;color:var(--mid);margin-top:6px;">countries of operational scope</div>
         </div>
       </div>
     </div>
@@ -702,17 +701,17 @@
     </div>
     <div class="work-grid">
 
-      <a href="https://account-signal-tool.vercel.app" target="_blank" class="work-card">
-        <div class="work-card-type">Live AI Tool</div>
-        <div class="work-card-title">Account Priming Signal Engine</div>
-        <div class="work-card-desc">Type in a company name and it surfaces buying signals, scores the timing window, and suggests an opening move. Built around the idea that the best time to reach a buyer is before they know they're buying.</div>
+      <a href="https://gtm-coverage-designer.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Calculator</div>
+        <div class="work-card-title">GTM Coverage Model Designer</div>
+        <div class="work-card-desc">Put in your revenue target, deal size, win rate, margin, churn, and contract length. Get back a recommended team structure, pipeline requirement, CAC ceiling, and flags for where the math breaks down.</div>
         <div class="work-card-arrow">Try it →</div>
       </a>
 
-      <a href="https://churn-upsell-tool.vercel.app" target="_blank" class="work-card">
-        <div class="work-card-type">Live AI Tool</div>
-        <div class="work-card-title">Churn Risk & Expansion Readiness</div>
-        <div class="work-card-desc">Paste in what you know about a CS account — usage trends, NPS, champion status — and get a plain-English read on churn risk and expansion readiness, plus a suggested next move.</div>
+      <a href="https://win-loss-analyzer.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Deal Diagnostic</div>
+        <div class="work-card-title">Win / Loss Analyzer</div>
+        <div class="work-card-desc">Walk through a deal — champion strength, response quality, process discipline, pricing position — and get a verdict, pattern flags, and specific playbook recommendations.</div>
         <div class="work-card-arrow">Try it →</div>
       </a>
 
@@ -720,6 +719,20 @@
         <div class="work-card-type">Interactive Assessment</div>
         <div class="work-card-title">Commercial Maturity Scorecard</div>
         <div class="work-card-desc">20 questions across the five things that tend to break first in a commercial org. Takes about 8 minutes. Shows you where you're leaking value.</div>
+        <div class="work-card-arrow">Try it →</div>
+      </a>
+
+      <a href="https://churn-expansion-scorecard.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Portfolio Assessment</div>
+        <div class="work-card-title">Churn & Expansion Scorecard</div>
+        <div class="work-card-desc">Score multiple accounts across health and expansion signals, then see the full portfolio plotted on a 2x2 matrix with a recommended play for each quadrant.</div>
+        <div class="work-card-arrow">Try it →</div>
+      </a>
+
+      <a href="https://gtm-org-designer.vercel.app" target="_blank" class="work-card">
+        <div class="work-card-type">Org Design</div>
+        <div class="work-card-title">GTM Org Designer</div>
+        <div class="work-card-desc">Two modes: build a commercial org from scratch based on your stage and motion, or diagnose accountability gaps in the one you have. Covers marketing, sales, enablement, RevOps, and beyond.</div>
         <div class="work-card-arrow">Try it →</div>
       </a>
 
@@ -740,7 +753,7 @@
       <a href="https://priming-window-thesis.vercel.app" target="_blank" class="work-card">
         <div class="work-card-type">Original Thesis</div>
         <div class="work-card-title">The Priming Window</div>
-        <div class="work-card-desc">The observation that got me thinking: the best reps I've worked with were doing something the others weren't. They were selling to buyers who didn't know they were buying yet.</div>
+        <div class="work-card-desc">An observation about how the best reps I've worked with operated differently. They were reaching buyers months before any formal process started.</div>
         <div class="work-card-arrow">Read it →</div>
       </a>
 
@@ -758,7 +771,7 @@
           The Priming Window: Getting to Buyers Before They're Buying
         </a>
         <p class="thinking-featured-desc">
-          An observation I kept coming back to: the top-performing reps at every company I've worked at were quietly running a different motion than everyone else. They were reaching buyers 12-18 months before any formal process started. This is my attempt to explain why that works and how to build it into a system.
+          An observation I kept coming back to: The top-performing reps at every company I've worked at were running a different motion than everyone else. They were reaching buyers 12-18 months before any formal process started. This is my attempt to explain why that works and how to operationalize it.
         </p>
         <div class="thinking-featured-meta">8 min read · Commercial Strategy · Signal-Based Prospecting</div>
       </div>
